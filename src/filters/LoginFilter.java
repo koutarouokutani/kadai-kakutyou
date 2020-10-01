@@ -59,9 +59,8 @@ public class LoginFilter implements Filter {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
                 }
-            } else {                                    // ログイン画面について
-                // ログインしているのにログイン画面を表示させようとした場合は
-                // システムのトップページにリダイレクト
+            } else {
+
                 if(e != null) {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
