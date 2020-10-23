@@ -35,14 +35,27 @@
                                 <fmt:formatDate value="${report.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                         </tr>
+                        <tr>
+                            <th>いいね数</th>
+                            <td><c:out value="${report.iine_goukei}" /></td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <c:if test="${sessionScope.login_employee.id == report.employee.id}">
-                    <p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
-                </c:if>
+               <c:choose>
+                <c:when test="${sessionScope.login_employee.id == report.employee.id}"><p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
+                </c:when>
+                <c:otherwise >
+
+                <form method="POST" action="<c:url value='/reports/iine' />">
+                    <c:set var="report.iine_goukei" value="${1}" />
+                    <button type="submit" name="iine_goukei" value="${report.iine_goukei}">この日報にいいねする</button>
+                </form>
+                </c:otherwise>
+               </c:choose>
             </c:when>
             <c:otherwise>
+
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>

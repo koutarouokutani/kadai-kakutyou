@@ -41,23 +41,27 @@ public class ReportsCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
+
             Report r = new Report();
 
             r.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
 
             Date report_date = new Date(System.currentTimeMillis());
+             int iine_goukei = 0;
             String rd_str = request.getParameter("report_date");
             if(rd_str != null && !rd_str.equals("")) {
                 report_date = Date.valueOf(request.getParameter("report_date"));
             }
             r.setReport_date(report_date);
-
+            r.setIine_goukei(iine_goukei);
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
+
+
 
             List<String> errors = ReportValidator.validate(r);
             if(errors.size() > 0) {

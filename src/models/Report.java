@@ -61,6 +61,9 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    @Column(name = "iine_goukei", nullable = false)
+    private Integer iine_goukei;
+
     public Integer getId() {
         return id;
     }
@@ -116,4 +119,12 @@ public class Report {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+
+    public Integer getIine_goukei() {
+        return iine_goukei;
+    }
+    public void setIine_goukei(Integer iine_goukei) {
+        this.iine_goukei = iine_goukei;
+    }
+
 }
