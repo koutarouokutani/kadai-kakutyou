@@ -48,7 +48,7 @@
                 <c:otherwise >
 
                 <form method="POST" action="<c:url value='/reports/iine' />">
-                    <c:set var="report.iine_goukei" value="${1}" />
+
                     <button type="submit" name="iine_goukei" value="${report.iine_goukei}">この日報にいいねする</button>
                 </form>
                 </c:otherwise>
