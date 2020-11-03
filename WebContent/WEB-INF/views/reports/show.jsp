@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
@@ -37,7 +38,17 @@
                         </tr>
                         <tr>
                             <th>いいね数</th>
-                            <td><c:out value="${report.iine_goukei}" /></td>
+                            <td>
+                            <c:choose>
+                            <c:when test="${report.iine_goukei != 0}">
+                                <p><a href="<c:url value="/iine_lists/index?id=${report.id}"/>">
+                                <c:out value="${report.iine_goukei}" /></a></p>
+                                </c:when>
+                                <c:otherwise >
+                                <p>0</p>
+                                </c:otherwise>
+                           </c:choose>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -46,11 +57,7 @@
                 <c:when test="${sessionScope.login_employee.id == report.employee.id}"><p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
                 </c:when>
                 <c:otherwise >
-
-                <form method="POST" action="<c:url value='/reports/iine' />">
-
-                    <button type="submit" name="iine_goukei" value="${report.iine_goukei}">この日報にいいねする</button>
-                </form>
+                   <p><a href="<c:url value="/reports/iine?id=${report.id}" />">この日報をいいねする</a></p>
                 </c:otherwise>
                </c:choose>
             </c:when>

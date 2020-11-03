@@ -124,7 +124,7 @@ public class Report {
         return iine_goukei;
     }
     public void setIine_goukei(Integer iine_goukei) {
-        this.iine_goukei = iine_goukei + 1;
+        this.iine_goukei = iine_goukei;
     }
 
 }

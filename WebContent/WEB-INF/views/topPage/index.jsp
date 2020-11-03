@@ -24,7 +24,17 @@
                         <td class="report_name"><c:out value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
-                        <td class="report_iine_goukei">${report.iine_goukei}</td>
+                        <td class="report_iine_goukei">
+                       <c:choose>
+                            <c:when test="${report.iine_goukei != 0}">
+                                <p><a href="<c:url value="/iine_lists/index?id=${report.id}"/>">
+                                <c:out value="${report.iine_goukei}" /></a></p>
+                                </c:when>
+                                <c:otherwise >
+                                <p>0</p>
+                                </c:otherwise>
+                           </c:choose>
+                        </td>
                         <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
